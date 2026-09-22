@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JaAbriuChamado? — Entrar</title>
+  <link rel="stylesheet" href="../public/css/stely.css" />
+</head>
+<body>
+
+  <div class="login-wrapper">
+
+    <!-- Lado esquerdo: branding -->
+    <section class="branding-side">
+      <div class="brand-top">
+        <div class="brand-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 13a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-1v-7h3M4 13v7h3v-7H4M4 13a8 8 0 0 1 16 0" stroke="#1E3A8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="brand-name">bem vindo a sua solucao</span>
+      </div>
+
+      <div class="middle-pitch">
+        <h1>Seu chamado. Nossa prioridade.</h1>
+        <p class="pitch-lead">Abra seu chamado e acompanhe a solução de forma simples, rápida e transparente.</p>
+        <p class="pitch-sub">Simplifique o atendimento, centralize as solicitações e entregue respostas rápidas em um único lugar.</p>
+      </div>
+    </section>
+
+    <!-- Lado direito: formulário -->
+    <section class="login-side">
+      <div class="login-card">
+
+        <div class="card-header">
+          <div class="icon-badge">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 14v-2a9 9 0 0 1 18 0v2" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="3" y="14" width="4" height="6" rx="1.5" stroke="#2563EB" stroke-width="1.8"/>
+              <rect x="17" y="14" width="4" height="6" rx="1.5" stroke="#2563EB" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h2>JaAbriuChamado?</h2>
+        </div>
+
+        <form id="login-form" class="login-form" novalidate>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <div class="input-with-icon">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6h18v12H3z" stroke="#94A3B8" stroke-width="1.5"/>
+                <path d="m3 7 9 6 9-6" stroke="#94A3B8" stroke-width="1.5"/>
+              </svg>
+              <input type="email" id="email" name="email" placeholder="seu email" required autocomplete="username" />
+            </div>
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-with-icon">
+              <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="10" width="14" height="10" rx="2" stroke="#94A3B8" stroke-width="1.5"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#94A3B8" stroke-width="1.5"/>
+              </svg>
+              <input type="password" id="password" name="password" placeholder="sua senha" required autocomplete="current-password" />
+              <button type="button" class="toggle-password" id="toggle-password" aria-label="Mostrar senha">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" stroke="#94A3B8" stroke-width="1.5"/>
+                  <circle cx="12" cy="12" r="3" stroke="#94A3B8" stroke-width="1.5"/>
+                </svg>
+              </button>
+            </div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <div class="field-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember" name="remember" checked />
+              <span>lembre-me</span>
+            </label>
+            <a href="#" class="link-muted">perdeu a senha?</a>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submit-btn">Entrar</button>
+
+          <p class="form-message" id="form-message"></p>
+        </form>
+
+        <div class="card-footer">
+          <a href="#">Terms of Service</a>
+          <span class="dot">•</span>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="../public/js/login.js"></script>
+</body>
+</html>
