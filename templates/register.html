@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JaAbriuChamado? — Cadastro</title>
+  <link rel="stylesheet" href="/public/css/stely.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <section class="branding-side">
+      <div class="brand-top">
+        <div class="brand-logo" aria-hidden="true">✓</div>
+        <span class="brand-name">suporte simples, do começo ao fim</span>
+      </div>
+      <div class="middle-pitch">
+        <h1>Conte com um atendimento organizado.</h1>
+        <p class="pitch-lead">Crie sua conta para abrir chamados e acompanhar cada atualização.</p>
+      </div>
+    </section>
+
+    <section class="login-side">
+      <div class="login-card">
+        <div class="card-header">
+          <div class="icon-badge" aria-hidden="true">＋</div>
+          <h2>Criar sua conta</h2>
+        </div>
+        <form id="register-form" class="login-form">
+          <div class="field">
+            <label for="name">Nome completo</label>
+            <input id="name" name="name" autocomplete="name" required minlength="2" placeholder="Seu nome">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+          </div>
+          <div class="field">
+            <label for="password">Senha</label>
+            <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="Pelo menos 8 caracteres">
+          </div>
+          <button class="btn-primary" id="submit-btn" type="submit">Criar conta</button>
+          <p class="form-message" id="form-message" role="status"></p>
+        </form>
+        <div class="card-footer"><a href="/login">Já tenho uma conta</a></div>
+      </div>
+    </section>
+  </div>
+  <script src="/public/js/register.js"></script>
+</body>
+</html>

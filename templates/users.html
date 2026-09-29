@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JaAbriuChamado? — Usuários</title>
+  <link rel="stylesheet" href="/public/css/dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/dashboard">
+      <span class="brand-icon" aria-hidden="true">⌕</span>
+      <span><strong>JaAbriuChamado?</strong><small>SISTEMA DE CHAMADOS</small></span>
+    </a>
+    <nav class="navigation" aria-label="Navegação principal">
+      <a href="/dashboard">Início</a>
+      <a href="/dashboard#chamados">Chamados</a>
+      <a class="active" href="/users" aria-current="page">Usuários</a>
+    </nav>
+    <div class="account">
+      <button class="account-button" id="account-button" type="button" aria-expanded="false" aria-controls="account-menu">
+        <span><strong id="account-name"></strong><small>ADMINISTRADOR</small></span>
+        <span class="avatar" id="avatar" aria-hidden="true"></span>
+      </button>
+      <div class="account-menu" id="account-menu" hidden>
+        <strong id="account-email"></strong>
+        <button id="logout-button" type="button">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard users-page">
+    <section class="intro">
+      <p class="eyebrow">ADMINISTRAÇÃO</p>
+      <h1>Gerenciar usuários</h1>
+      <p>Pesquise contas, altere permissões e controle quem pode acessar o sistema.</p>
+    </section>
+
+    <section aria-labelledby="users-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">CONTAS DO SISTEMA</p><h2 id="users-heading">Usuários cadastrados <span class="count-badge" id="users-count">0</span></h2></div>
+        <a class="button-secondary back-link" href="/dashboard">Voltar ao painel</a>
+      </div>
+      <input class="search-input" id="user-search" type="search" placeholder="Buscar por nome ou email…" aria-label="Buscar usuários">
+      <div class="table-wrap users-table-wrap">
+        <table>
+          <thead><tr><th>Usuário</th><th>Perfil</th><th>Acesso</th><th>Cadastro</th><th>Ações</th></tr></thead>
+          <tbody id="users-list"><tr><td colspan="5">Carregando usuários…</td></tr></tbody>
+        </table>
+      </div>
+      <p class="page-note">A exclusão de uma conta também apaga os chamados associados a ela. O último administrador ativo não pode ser removido.</p>
+    </section>
+  </main>
+
+  <dialog id="user-dialog">
+    <form id="user-form" class="dialog-card">
+      <button class="dialog-close" type="button" data-close aria-label="Fechar">×</button>
+      <input type="hidden" name="id">
+      <p class="eyebrow">CONTA DO SISTEMA</p>
+      <h2>Editar usuário</h2>
+      <label>Nome completo<input name="name" required minlength="2" maxlength="100" autocomplete="name"></label>
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <label>Perfil<select name="role"><option value="user">Usuário</option><option value="admin">Administrador</option></select></label>
+      <label>Nova senha <span class="optional-label">Opcional; deixe vazio para manter a atual</span><input name="password" type="password" minlength="8" autocomplete="new-password" placeholder="Mínimo de 8 caracteres"></label>
+      <label class="checkbox-label"><input name="active" type="checkbox"> Acesso ativo</label>
+      <p class="form-message" id="user-message" role="status"></p>
+      <button class="btn-primary" type="submit">Salvar alterações</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/public/js/users.js"></script>
+</body>
+</html>

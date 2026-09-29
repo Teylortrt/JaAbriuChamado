@@ -1,72 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JaAbriuChamado? — Início</title>
-  <link rel="stylesheet" href="/public/css/dashboard.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JaAbriuChamado? — Painel</title>
+  <link rel="stylesheet" href="/public/css/dashboard.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="/dashboard" aria-label="Página inicial">
+    <a class="brand" href="/dashboard">
       <span class="brand-icon" aria-hidden="true">⌕</span>
       <span><strong>JaAbriuChamado?</strong><small>SISTEMA DE CHAMADOS</small></span>
     </a>
-
     <nav class="navigation" aria-label="Navegação principal">
-      <a class="active" href="/dashboard">Início</a>
-      <button type="button" data-coming-soon>Pessoas</button>
-      <button type="button" data-coming-soon>Abrir Chamado</button>
+      <a class="active" href="#inicio">Início</a>
+      <a href="#chamados">Chamados</a>
+      <a id="people-link" href="/users" hidden>Usuários</a>
     </nav>
-
     <div class="account">
       <button class="account-button" id="account-button" type="button" aria-expanded="false" aria-controls="account-menu">
-        <span><strong>Suporte Admin</strong><small>TI Departamento</small></span>
-        <span class="avatar" aria-hidden="true">A</span>
+        <span><strong id="account-name"></strong><small id="account-role"></small></span>
+        <span class="avatar" id="avatar" aria-hidden="true"></span>
       </button>
       <div class="account-menu" id="account-menu" hidden>
-        <strong>admin@email.com</strong>
-        <button type="button" id="logout-button">Sair</button>
+        <strong id="account-email"></strong>
+        <button id="logout-button" type="button">Sair</button>
       </div>
     </div>
   </header>
 
-  <main class="dashboard">
-    <section class="intro" aria-labelledby="welcome-title">
+  <main class="dashboard" id="inicio">
+    <section class="intro">
       <p class="eyebrow">PAINEL INICIAL</p>
-      <h1 id="welcome-title">Bem-vindo ao JaAbriuChamado?</h1>
-
+      <h1 id="welcome-title">Olá!</h1>
+      <p>Acompanhe suas solicitações ou abra um novo chamado.</p>
     </section>
 
     <section class="quick-actions" aria-label="Ações rápidas">
       <article class="action-card">
-        <span class="action-icon blue" aria-hidden="true">+</span>
-        <span class="tag"></span>
-        <h2>Criar Chamado</h2>
-        <p></p>
+        <span class="action-icon blue" aria-hidden="true">＋</span>
+        <h2>Abrir chamado</h2>
+        <p>Descreva sua necessidade para a equipe de suporte.</p>
+        <button id="open-ticket" type="button">Criar chamado →</button>
       </article>
-
-      <article class="action-card">
+      <article class="action-card" id="people-card" hidden>
         <span class="action-icon violet" aria-hidden="true">♙</span>
         <span class="tag">ADMIN</span>
-        <h2>Registro de Pessoas</h2>
-        <p>Cadastre e organize os usuários e departamentos do sistema.</p>
+        <h2>Usuários</h2>
+        <p>Gerencie contas, permissões e acessos ao sistema.</p>
+        <a href="/users">Gerenciar usuários →</a>
       </article>
-
       <article class="action-card">
         <span class="action-icon green" aria-hidden="true">✓</span>
-        <span class="tag">PRONTO</span>
-        <h2>chamados prontos</h2>
+        <h2>Seus chamados</h2>
+        <p id="ticket-count">Carregando solicitações…</p>
+        <button type="button" onclick="document.getElementById('chamados').scrollIntoView({behavior:'smooth'})">Ver chamados →</button>
       </article>
     </section>
 
-    <section class="empty-panel" aria-labelledby="activity-title">
-      <div class="empty-icon" aria-hidden="true">▤</div>
-      <h2 id="activity-title">chamados</h2>
-      <p>chmados apareceram aqui.</p>
+    <section class="tickets-section" id="chamados">
+      <div class="section-heading">
+        <div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Chamados</h2></div>
+        <button class="button-secondary" id="refresh-tickets" type="button">Atualizar</button>
+      </div>
+      <input class="search-input" id="ticket-search" type="search" placeholder="Pesquisar assunto, descrição, categoria ou solicitante…" aria-label="Pesquisar chamados">
+      <div id="tickets-list" class="tickets-list"></div>
     </section>
   </main>
 
+  <dialog id="ticket-dialog">
+    <form id="ticket-form" class="dialog-card">
+      <button class="dialog-close" type="button" data-close aria-label="Fechar">×</button>
+      <input type="hidden" name="id">
+      <p class="eyebrow">SOLICITAÇÃO</p>
+      <h2 id="ticket-dialog-title">Abrir chamado</h2>
+      <label>Assunto<input name="title" required minlength="4" maxlength="140" placeholder="Ex.: Não consigo acessar o sistema"></label>
+      <label>Categoria<select name="category" required><option value="">Selecione</option><option>Computador e equipamentos</option><option>Acesso e contas</option><option>Internet e rede</option><option>Sistemas e programas</option><option>Outro</option></select></label>
+      <label>Prioridade<select name="priority"><option>Normal</option><option>Baixa</option><option>Alta</option><option>Urgente</option></select></label>
+      <label>Descrição<textarea name="description" required minlength="10" rows="5" placeholder="Conte o que aconteceu e quando começou"></textarea></label>
+      <p class="form-message" id="ticket-message"></p>
+      <button class="btn-primary" id="ticket-save">Enviar chamado</button>
+    </form>
+  </dialog>
+
+  <dialog id="assignment-dialog">
+    <form id="assignment-form" class="dialog-card">
+      <button class="dialog-close" id="assignment-close" type="button" aria-label="Fechar">×</button>
+      <input type="hidden" name="ticketId">
+      <p class="eyebrow">ATRIBUIÇÃO</p>
+      <h2>Quem vai atender este chamado?</h2>
+      <p class="dialog-description">Selecione uma conta ativa responsável pelo atendimento.</p>
+      <label>Responsável<select name="assignedTo" id="assignee-select" required><option value="">Selecione um usuário</option></select></label>
+      <p class="form-message" id="assignment-message"></p>
+      <button class="btn-primary" type="submit">Atribuir e iniciar atendimento</button>
+      <button class="button-secondary assignment-cancel" id="assignment-cancel" type="button">Cancelar</button>
+    </form>
+  </dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="/public/js/dashboard.js"></script>
 </body>
